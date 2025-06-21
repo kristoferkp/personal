@@ -1,45 +1,24 @@
-import { Footer, Layout, Navbar, ThemeSwitch } from "nextra-theme-blog";
-import { Head, Search } from "nextra/components";
-import { getPageMap } from "nextra/page-map";
-import "nextra-theme-blog/style.css";
+import { Inter } from "next/font/google";
+import "./globals.css";
+
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-	title: "Blog Example",
+	title: "Kristofer P - Personal Website",
+	description: "Welcome to my macOS-inspired personal website",
 };
 
-export default async function RootLayout({ children }) {
+export default function RootLayout({
+	children,
+}: {
+	children: React.ReactNode;
+}) {
 	return (
 		<html
 			lang="en"
 			suppressHydrationWarning
 		>
-			<Head backgroundColor={{ dark: "#0f172a", light: "#fefce8" }} />
-			<body>
-				<Layout>
-					<Navbar pageMap={await getPageMap()}>
-						<Search />
-						<ThemeSwitch />
-					</Navbar>
-
-					{children}
-
-					<Footer>
-						<abbr
-							title="This site and all its content are licensed under a Creative Commons Attribution-NonCommercial 4.0 International License."
-							style={{ cursor: "help" }}
-						>
-							CC BY-NC 4.0
-						</abbr>{" "}
-						{new Date().getFullYear()} © Kristofer P.
-						<a
-							href="/feed.xml"
-							style={{ float: "right" }}
-						>
-							RSS
-						</a>
-					</Footer>
-				</Layout>
-			</body>
+			<body className={`${inter.className} antialiased`}>{children}</body>
 		</html>
 	);
 }
