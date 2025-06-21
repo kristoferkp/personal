@@ -77,10 +77,22 @@ export default function Desktop() {
 		);
 	};
 
+	// Get the active window (highest zIndex among visible windows)
+	const getActiveWindow = () => {
+		const visibleWindows = windows.filter((w) => w.isOpen && !w.isMinimized);
+		if (visibleWindows.length === 0) return undefined;
+
+		const activeWindow = visibleWindows.reduce((highest, current) =>
+			current.zIndex > highest.zIndex ? current : highest
+		);
+
+		return activeWindow.type;
+	};
+
 	return (
 		<div className="h-screen w-screen relative overflow-hidden">
 			<Wallpaper />
-			<MenuBar />
+			<MenuBar activeWindow={getActiveWindow()} />
 
 			{/* Desktop */}
 			<div className="h-full w-full relative pt-6">

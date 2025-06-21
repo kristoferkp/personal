@@ -109,7 +109,7 @@ export default function Window({
 		if (type === "blog") {
 			return "fixed inset-0 bg-white shadow-2xl window-appear select-none z-50";
 		}
-		return "fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 sm:absolute sm:translate-x-0 sm:translate-y-0 bg-white/90 glass rounded-lg shadow-2xl window-appear select-none min-w-[400px] min-h-[300px] max-w-[90vw] max-h-[80vh] overflow-hidden sm:left-[var(--desktop-left)] sm:top-[var(--desktop-top)]";
+		return "fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 sm:absolute sm:translate-x-0 sm:translate-y-0 bg-white/90 glass rounded-lg shadow-2xl window-appear select-none w-[95vw] sm:min-w-[400px] sm:w-auto min-h-[300px] max-w-[90vw] max-h-[80vh] overflow-hidden sm:left-[var(--desktop-left)] sm:top-[var(--desktop-top)]";
 	};
 
 	const getWindowPosition = () => {
