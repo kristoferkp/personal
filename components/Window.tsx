@@ -3,7 +3,6 @@
 import { useState, useRef, useEffect } from "react";
 
 interface WindowProps {
-	id: string;
 	type: string;
 	position: { x: number; y: number };
 	size: { width: number; height: number };
@@ -15,8 +14,23 @@ interface WindowProps {
 	onSizeChange: (size: { width: number; height: number }) => void;
 }
 
+interface FileSystemItem {
+	name: string;
+	icon: string;
+	type: "folder" | "file" | "special";
+	dateModified: string;
+	size: string;
+	path?: string;
+}
+
+interface SidebarItem {
+	name: string;
+	icon: string;
+	type: "folder" | "special";
+	path?: string;
+}
+
 export default function Window({
-	id,
 	type,
 	position,
 	size,
@@ -393,7 +407,7 @@ function AboutContent() {
 
 			<div className="space-y-3">
 				<p className="text-gray-700">
-					Welcome to my personal website! I'm a passionate developer who loves
+					Welcome to my personal website! I&apos;m a passionate developer who loves
 					creating beautiful and functional web applications.
 				</p>
 				<p className="text-gray-700">
@@ -594,9 +608,9 @@ function ContactContent() {
 			</div>
 
 			<div className="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
-				<h3 className="font-semibold text-blue-800 mb-2">Let's Collaborate!</h3>
+				<h3 className="font-semibold text-blue-800 mb-2">Let&apos;s Collaborate!</h3>
 				<p className="text-blue-700 text-sm">
-					I'm always interested in discussing new opportunities, projects, or
+					I&apos;m always interested in discussing new opportunities, projects, or
 					just chatting about technology. Feel free to reach out through any of
 					the channels above!
 				</p>
@@ -621,7 +635,7 @@ function TerminalContent() {
 				<div>-rw-r--r-- 1 kristofer staff 123 Jun 21 2025 about.md</div>
 				<div>-rw-r--r-- 1 kristofer staff 456 Jun 21 2025 projects.json</div>
 				<div>drwxr-xr-x 3 kristofer staff 96 Jun 21 2025 src</div>
-				<div>kristofer@macbook ~ % echo "Welcome to my website!"</div>
+				<div>kristofer@macbook ~ % echo &quot;Welcome to my website!&quot;</div>
 				<div>Welcome to my website!</div>
 				<div>
 					kristofer@macbook ~ % <span className="animate-pulse">_</span>
@@ -636,7 +650,7 @@ function FinderContent() {
 	const [viewMode, setViewMode] = useState<"icons" | "list">("icons");
 	const [selectedItem, setSelectedItem] = useState<string | null>(null);
 
-	const sidebarItems = [
+	const sidebarItems: SidebarItem[] = [
 		{ name: "AirDrop", icon: "📡", type: "special" },
 		{ name: "Recents", icon: "🕒", type: "special" },
 		{ name: "Applications", icon: "📱", type: "folder", path: "Applications" },
@@ -648,8 +662,8 @@ function FinderContent() {
 		{ name: "Music", icon: "🎵", type: "folder", path: "Music" },
 	];
 
-	const getItemsForPath = (path: string) => {
-		const items: Record<string, any[]> = {
+	const getItemsForPath = (path: string): FileSystemItem[] => {
+		const items: Record<string, FileSystemItem[]> = {
 			kristofer: [
 				{ name: "Applications", icon: "📱", type: "folder", dateModified: "Dec 15, 2024", size: "--" },
 				{ name: "Desktop", icon: "🖥️", type: "folder", dateModified: "Jun 30, 2025", size: "--" },
@@ -682,7 +696,7 @@ function FinderContent() {
 
 	const currentItems = getItemsForPath(currentPath);
 
-	const handleItemClick = (item: any) => {
+	const handleItemClick = (item: FileSystemItem) => {
 		if (item.type === "folder") {
 			if (getItemsForPath(item.name).length > 0) {
 				setCurrentPath(item.name);
@@ -691,7 +705,7 @@ function FinderContent() {
 		setSelectedItem(item.name);
 	};
 
-	const handleSidebarClick = (item: any) => {
+	const handleSidebarClick = (item: SidebarItem) => {
 		if (item.path) {
 			setCurrentPath(item.path);
 		}
@@ -772,7 +786,7 @@ function FinderContent() {
 						</div>
 						<div className="flex items-center space-x-2 p-2 hover:bg-gray-200 rounded cursor-pointer">
 							<span className="text-sm">💻</span>
-							<span className="text-sm">Kristofer's MacBook</span>
+							<span className="text-sm">Kristofer&apos;s MacBook</span>
 						</div>
 					</div>
 				</div>

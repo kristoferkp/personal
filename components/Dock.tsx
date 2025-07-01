@@ -9,6 +9,13 @@ interface DockProps {
 	onRestoreWindow: (id: string) => void;
 }
 
+interface App {
+	id: string;
+	name: string;
+	icon: string;
+	type: string;
+}
+
 export default function Dock({
 	onOpenWindow,
 	windows,
@@ -68,7 +75,7 @@ export default function Dock({
 		return windows.find((w) => w.type === type && w.isMinimized);
 	};
 
-	const handleAppClick = (app: any) => {
+	const handleAppClick = (app: App) => {
 		const minimizedWindow = getMinimizedWindow(app.type);
 		if (minimizedWindow) {
 			onRestoreWindow(minimizedWindow.id);
