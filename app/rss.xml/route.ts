@@ -1,5 +1,7 @@
 import { getPosts } from "../posts/get-posts";
 
+export const dynamic = "force-static";
+
 const CONFIG = {
 	title: "My Blog",
 	siteUrl: "https://your-domain.com",

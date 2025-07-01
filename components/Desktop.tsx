@@ -137,7 +137,6 @@ export default function Desktop() {
 					.map((window) => (
 						<Window
 							key={window.id}
-							id={window.id}
 							type={window.type}
 							position={window.position}
 							size={window.size}
