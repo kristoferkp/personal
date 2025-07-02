@@ -116,6 +116,7 @@ export default function Dock({
 										height={80}
 										className="w-full h-full object-contain p-0.5 sm:p-1"
 										priority
+										unoptimized
 									/>
 
 									{/* Running indicator */}

@@ -578,6 +578,7 @@ export default function MenuBar({
 								height={16}
 								className="w-4 h-4 object-contain"
 								priority
+								unoptimized
 							/>
 						</button>
 						{renderDropdown("Apple")}
@@ -660,6 +661,7 @@ export default function MenuBar({
 						width={24}
 						height={24}
 						className="w-6 h-6 object-contain"
+						unoptimized
 					/>
 					<Image
 						src="/images/wifi-icon.png"
@@ -667,6 +669,7 @@ export default function MenuBar({
 						width={16}
 						height={16}
 						className="w-4 h-4 object-contain"
+						unoptimized
 					/>
 					<Image
 						src="/images/control-center-icon.png"
@@ -674,6 +677,7 @@ export default function MenuBar({
 						width={12}
 						height={12}
 						className="w-3 h-3 object-contain"
+						unoptimized
 					/>
 				</div>
 				<div className="flex items-center space-x-2">
