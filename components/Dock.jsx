@@ -9,7 +9,7 @@ export default function Dock({
 	windows,
 	onRestoreWindow,
 }) {
-	const [hoveredApp, setHoveredApp] = useState<string | null>(null);
+	const [hoveredApp, setHoveredApp] = useState(null);
 
 	const apps = [
 		{

@@ -15,7 +15,7 @@ export default function Window({
 }) {
 	const [isDragging, setIsDragging] = useState(false);
 	const [isResizing, setIsResizing] = useState(false);
-	const [resizeHandle, setResizeHandle] = useState<string | null>(null);
+	const [resizeHandle, setResizeHandle] = useState(null);
 	const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
 	const [resizeStart, setResizeStart] = useState({
 		x: 0,
@@ -25,7 +25,7 @@ export default function Window({
 		initialX: 0,
 		initialY: 0,
 	});
-	const windowRef = useRef<HTMLDivElement>(null);
+	const windowRef = useRef(null);
 
 	const handleMouseDown = (e) => {
 		if (
@@ -620,7 +620,7 @@ function TerminalContent() {
 function FinderContent() {
 	const [currentPath, setCurrentPath] = useState("kristofer");
 	const [viewMode, setViewMode] = useState<"icons" | "list">("icons");
-	const [selectedItem, setSelectedItem] = useState<string | null>(null);
+	const [selectedItem, setSelectedItem] = useState(null);
 
 	const sidebarItems = [
 		{ name: "AirDrop", icon: "📡", type: "special" },

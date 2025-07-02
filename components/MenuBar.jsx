@@ -9,8 +9,8 @@ export default function MenuBar({
 	onCloseWindow,
 	onOpenWindow,
 }) {
-	const [openDropdown, setOpenDropdown] = useState<string | null>(null);
-	const menuBarRef = useRef<HTMLDivElement>(null);
+	const [openDropdown, setOpenDropdown] = useState(null);
+	const menuBarRef = useRef(null);
 
 	const currentTime = new Date().toLocaleTimeString("en-GB", {
 		hour: "2-digit",

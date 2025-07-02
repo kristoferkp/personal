@@ -3,12 +3,12 @@ import nextra from "nextra";
 // Set up Nextra with its configuration
 const withNextra = nextra({
 	staticImage: true,
-	contentDirBasePath: '/blog' // Or even nested e.g. `/docs/advanced`
+	// contentDirBasePath: '/blog' // Commented out to use root content directory
 });
 
 // Export the final Next.js config with Nextra included
 export default withNextra({
-	output: "export",  // <=== enables static exports
+	// output: "export",  // <=== temporarily disabled for debugging
   	reactStrictMode: true,
 	basePath: "/personal",  // <=== sets the base path for the app
 	images: {
