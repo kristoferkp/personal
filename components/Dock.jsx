@@ -3,24 +3,12 @@
 import { useState } from "react";
 import Image from "next/image";
 
-interface DockProps {
-	onOpenWindow: (type: string) => void;
-	windows: Array<{ id: string; type: string; isMinimized: boolean }>;
-	onRestoreWindow: (id: string) => void;
-}
-
-interface App {
-	id: string;
-	name: string;
-	icon: string;
-	type: string;
-}
 
 export default function Dock({
 	onOpenWindow,
 	windows,
 	onRestoreWindow,
-}: DockProps) {
+}) {
 	const [hoveredApp, setHoveredApp] = useState<string | null>(null);
 
 	const apps = [
@@ -62,20 +50,20 @@ export default function Dock({
 		},
 	];
 
-	const getAppScale = (appId: string) => {
+	const getAppScale = (appId) => {
 		if (hoveredApp === appId) return "sm:scale-125 scale-105";
 		return "scale-100";
 	};
 
-	const isAppRunning = (type: string) => {
+	const isAppRunning = (type) => {
 		return windows.some((w) => w.type === type && !w.isMinimized);
 	};
 
-	const getMinimizedWindow = (type: string) => {
+	const getMinimizedWindow = (type) => {
 		return windows.find((w) => w.type === type && w.isMinimized);
 	};
 
-	const handleAppClick = (app: App) => {
+	const handleAppClick = (app) => {
 		const minimizedWindow = getMinimizedWindow(app.type);
 		if (minimizedWindow) {
 			onRestoreWindow(minimizedWindow.id);

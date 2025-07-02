@@ -3,17 +3,12 @@
 import Image from "next/image";
 import { useState, useRef, useEffect } from "react";
 
-interface MenuBarProps {
-	activeWindow?: string;
-	onCloseWindow?: (windowType: string) => void;
-	onOpenWindow?: (windowType: string) => void;
-}
 
 export default function MenuBar({
 	activeWindow,
 	onCloseWindow,
 	onOpenWindow,
-}: MenuBarProps) {
+}) {
 	const [openDropdown, setOpenDropdown] = useState<string | null>(null);
 	const menuBarRef = useRef<HTMLDivElement>(null);
 
@@ -31,10 +26,10 @@ export default function MenuBar({
 
 	// Close dropdown when clicking outside
 	useEffect(() => {
-		const handleClickOutside = (event: MouseEvent) => {
+		const handleClickOutside = (event) => {
 			if (
 				menuBarRef.current &&
-				!menuBarRef.current.contains(event.target as Node)
+				!menuBarRef.current.contains(event.target)
 			) {
 				setOpenDropdown(null);
 			}
@@ -44,7 +39,7 @@ export default function MenuBar({
 		return () => document.removeEventListener("mousedown", handleClickOutside);
 	}, []);
 
-	const getAppDisplayName = (windowType?: string) => {
+	const getAppDisplayName = (windowType) => {
 		switch (windowType) {
 			case "about":
 				return "About Me";
@@ -65,11 +60,11 @@ export default function MenuBar({
 		}
 	};
 
-	const toggleDropdown = (menu: string) => {
+	const toggleDropdown = (menu) => {
 		setOpenDropdown(openDropdown === menu ? null : menu);
 	};
 
-	const getDropdownItems = (menu: string) => {
+	const getDropdownItems = (menu) => {
 		switch (menu) {
 			case "Apple":
 				return [
@@ -522,7 +517,7 @@ export default function MenuBar({
 		}
 	};
 
-	const renderDropdown = (menu: string) => {
+	const renderDropdown = (menu) => {
 		if (openDropdown !== menu) return null;
 
 		const items = getDropdownItems(menu);

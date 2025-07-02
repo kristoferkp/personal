@@ -2,34 +2,6 @@
 
 import { useState, useRef, useEffect } from "react";
 
-interface WindowProps {
-	type: string;
-	position: { x: number; y: number };
-	size: { width: number; height: number };
-	zIndex: number;
-	onClose: () => void;
-	onMinimize: () => void;
-	onBringToFront: () => void;
-	onPositionChange: (position: { x: number; y: number }) => void;
-	onSizeChange: (size: { width: number; height: number }) => void;
-}
-
-interface FileSystemItem {
-	name: string;
-	icon: string;
-	type: "folder" | "file" | "special";
-	dateModified: string;
-	size: string;
-	path?: string;
-}
-
-interface SidebarItem {
-	name: string;
-	icon: string;
-	type: "folder" | "special";
-	path?: string;
-}
-
 export default function Window({
 	type,
 	position,
@@ -40,7 +12,7 @@ export default function Window({
 	onBringToFront,
 	onPositionChange,
 	onSizeChange,
-}: WindowProps) {
+}) {
 	const [isDragging, setIsDragging] = useState(false);
 	const [isResizing, setIsResizing] = useState(false);
 	const [resizeHandle, setResizeHandle] = useState<string | null>(null);
@@ -55,10 +27,10 @@ export default function Window({
 	});
 	const windowRef = useRef<HTMLDivElement>(null);
 
-	const handleMouseDown = (e: React.MouseEvent) => {
+	const handleMouseDown = (e) => {
 		if (
-			(e.target as HTMLElement).closest(".window-controls") ||
-			(e.target as HTMLElement).closest(".resize-handle")
+			(e.target).closest(".window-controls") ||
+			(e.target).closest(".resize-handle")
 		)
 			return;
 
@@ -74,7 +46,7 @@ export default function Window({
 		}
 	};
 
-	const handleResizeStart = (e: React.MouseEvent, handle: string) => {
+	const handleResizeStart = (e, handle) => {
 		e.stopPropagation();
 		e.preventDefault();
 		setIsResizing(true);
@@ -92,7 +64,7 @@ export default function Window({
 	};
 
 	useEffect(() => {
-		const handleMouseMove = (e: MouseEvent) => {
+		const handleMouseMove = (e) => {
 			if (isDragging) {
 				const newX = e.clientX - dragOffset.x;
 				const newY = Math.max(40, e.clientY - dragOffset.y); // Don't go above menu bar (32px + 8px padding)
@@ -292,7 +264,7 @@ export default function Window({
 			top: position.y,
 			width: size.width,
 			height: size.height,
-		} as React.CSSProperties;
+		};
 	};
 
 	return (
@@ -650,7 +622,7 @@ function FinderContent() {
 	const [viewMode, setViewMode] = useState<"icons" | "list">("icons");
 	const [selectedItem, setSelectedItem] = useState<string | null>(null);
 
-	const sidebarItems: SidebarItem[] = [
+	const sidebarItems = [
 		{ name: "AirDrop", icon: "📡", type: "special" },
 		{ name: "Recents", icon: "🕒", type: "special" },
 		{ name: "Applications", icon: "📱", type: "folder", path: "Applications" },
@@ -662,8 +634,8 @@ function FinderContent() {
 		{ name: "Music", icon: "🎵", type: "folder", path: "Music" },
 	];
 
-	const getItemsForPath = (path: string): FileSystemItem[] => {
-		const items: Record<string, FileSystemItem[]> = {
+	const getItemsForPath = (path) => {
+		const items = {
 			kristofer: [
 				{ name: "Applications", icon: "📱", type: "folder", dateModified: "Dec 15, 2024", size: "--" },
 				{ name: "Desktop", icon: "🖥️", type: "folder", dateModified: "Jun 30, 2025", size: "--" },
@@ -696,7 +668,7 @@ function FinderContent() {
 
 	const currentItems = getItemsForPath(currentPath);
 
-	const handleItemClick = (item: FileSystemItem) => {
+	const handleItemClick = (item) => {
 		if (item.type === "folder") {
 			if (getItemsForPath(item.name).length > 0) {
 				setCurrentPath(item.name);
@@ -705,7 +677,7 @@ function FinderContent() {
 		setSelectedItem(item.name);
 	};
 
-	const handleSidebarClick = (item: SidebarItem) => {
+	const handleSidebarClick = (item) => {
 		if (item.path) {
 			setCurrentPath(item.path);
 		}

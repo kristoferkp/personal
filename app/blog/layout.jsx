@@ -1,6 +1,5 @@
 import { Footer, Layout, Navbar, ThemeSwitch } from "nextra-theme-blog";
-import { Search } from "nextra/components";
-import { getPageMap } from "nextra/page-map";
+import { getPosts } from "../posts/get-posts";
 import "nextra-theme-blog/style.css";
 
 export const metadata = {
@@ -8,10 +7,24 @@ export const metadata = {
 };
 
 export default async function RootLayout({ children }) {
+	// Create a minimal pageMap for static export
+	let pageMap;
+	try {
+		const posts = await getPosts();
+		pageMap = posts.map(post => ({
+			kind: "MdxPage",
+			name: post.name,
+			route: `/blog/${post.name}`,
+			frontMatter: post.frontMatter,
+		}));
+	} catch (error) {
+		console.warn('Failed to generate pageMap for blog layout:', error);
+		pageMap = [];
+	}
+
 	return (
 		<Layout>
-			<Navbar pageMap={await getPageMap()}>
-				<Search />
+			<Navbar pageMap={pageMap}>
 				<ThemeSwitch />
 			</Navbar>
 

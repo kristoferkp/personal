@@ -6,21 +6,12 @@ import Dock from "./Dock";
 import MenuBar from "./MenuBar";
 import Wallpaper from "./Wallpaper";
 
-interface WindowState {
-	id: string;
-	type: string;
-	isOpen: boolean;
-	isMinimized: boolean;
-	position: { x: number; y: number };
-	size: { width: number; height: number };
-	zIndex: number;
-}
 
 export default function Desktop() {
-	const [windows, setWindows] = useState<WindowState[]>([]);
+	const [windows, setWindows] = useState([]);
 	const [maxZIndex, setMaxZIndex] = useState(100);
 
-	const getDefaultSize = (type: string) => {
+	const getDefaultSize = (type) => {
 		switch (type) {
 			case "blog":
 				return { width: 1200, height: 800 }; // Default size instead of window dimensions
@@ -39,7 +30,7 @@ export default function Desktop() {
 		}
 	};
 
-	const openWindow = (type: string) => {
+	const openWindow = (type) => {
 		const existingWindow = windows.find((w) => w.type === type);
 
 		if (existingWindow) {
@@ -58,7 +49,7 @@ export default function Desktop() {
 			return;
 		}
 
-		const newWindow: WindowState = {
+		const newWindow = {
 			id: `${type}-${Date.now()}`,
 			type,
 			isOpen: true,
@@ -72,21 +63,21 @@ export default function Desktop() {
 		setMaxZIndex((prev) => prev + 1);
 	};
 
-	const closeWindow = (id: string) => {
+	const closeWindow = (id) => {
 		setWindows((prev) => prev.filter((w) => w.id !== id));
 	};
 
-	const closeWindowByType = (type: string) => {
+	const closeWindowByType = (type) => {
 		setWindows((prev) => prev.filter((w) => w.type !== type));
 	};
 
-	const minimizeWindow = (id: string) => {
+	const minimizeWindow = (id) => {
 		setWindows((prev) =>
 			prev.map((w) => (w.id === id ? { ...w, isMinimized: true } : w))
 		);
 	};
 
-	const bringToFront = (id: string) => {
+	const bringToFront = (id) => {
 		setWindows((prev) =>
 			prev.map((w) => (w.id === id ? { ...w, zIndex: maxZIndex + 1 } : w))
 		);
@@ -94,8 +85,8 @@ export default function Desktop() {
 	};
 
 	const updateWindowPosition = (
-		id: string,
-		position: { x: number; y: number }
+		id,
+		position
 	) => {
 		setWindows((prev) =>
 			prev.map((w) => (w.id === id ? { ...w, position } : w))
@@ -103,8 +94,8 @@ export default function Desktop() {
 	};
 
 	const updateWindowSize = (
-		id: string,
-		size: { width: number; height: number }
+		id,
+		size
 	) => {
 		setWindows((prev) => prev.map((w) => (w.id === id ? { ...w, size } : w)));
 	};
