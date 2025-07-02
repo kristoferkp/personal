@@ -15,37 +15,37 @@ export default function Dock({
 		{
 			id: "finder",
 			name: "Finder",
-			icon: "/images/finder-logo.png",
+			icon: "/personal/images/finder-logo.png",
 			type: "finder",
 		},
 		{
 			id: "blog",
 			name: "Blog",
-			icon: "/images/notes-logo.png",
+			icon: "/personal/images/notes-logo.png",
 			type: "blog",
 		},
 		{
 			id: "about",
 			name: "About Me",
-			icon: "/images/contacts-logo.png",
+			icon: "/personal/images/contacts-logo.png",
 			type: "about",
 		},
 		{
 			id: "projects",
 			name: "Projects",
-			icon: "/images/code-folder-logo.png",
+			icon: "/personal/images/code-folder-logo.png",
 			type: "projects",
 		},
 		{
 			id: "contact",
 			name: "Contact",
-			icon: "/images/mail-logo.png",
+			icon: "/personal/images/mail-logo.png",
 			type: "contact",
 		},
 		{
 			id: "terminal",
 			name: "Terminal",
-			icon: "/images/terminal-logo.png",
+			icon: "/personal/images/terminal-logo.png",
 			type: "terminal",
 		},
 	];

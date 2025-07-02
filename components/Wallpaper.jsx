@@ -7,7 +7,7 @@ export default function Wallpaper() {
 			<div
 				className="absolute inset-0 bg-cover bg-center bg-no-repeat"
 				style={{
-					backgroundImage: "url(/wallpaper.jpg)",
+					backgroundImage: "url(/personal/wallpaper.jpg)",
 				}}
 			></div>
 

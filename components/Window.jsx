@@ -355,7 +355,7 @@ export default function Window({
 function BlogContent() {
 	return (
 		<iframe
-			src="/blog"
+			src="/personal/blog"
 			className="w-full h-full border-0 block"
 			title="Blog"
 			sandbox="allow-scripts allow-same-origin allow-forms allow-navigation"
@@ -619,7 +619,7 @@ function TerminalContent() {
 
 function FinderContent() {
 	const [currentPath, setCurrentPath] = useState("kristofer");
-	const [viewMode, setViewMode] = useState<"icons" | "list">("icons");
+	const [viewMode, setViewMode] = useState("icons");
 	const [selectedItem, setSelectedItem] = useState(null);
 
 	const sidebarItems = [

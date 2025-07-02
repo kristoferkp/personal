@@ -3,7 +3,7 @@
     "dev": "next --turbo",
     "build": "next build",
     "start": "next start",
-    "postbuild": "pagefind --site .next/server/app --output-path out/_pagefind"
+    "postbuild": "pagefind --site out --output-path out/_pagefind"
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.1.11",

@@ -567,7 +567,7 @@ export default function MenuBar({
 							className="w-6 h-6 flex items-center justify-center hover:bg-white/10 rounded transition-colors"
 						>
 							<Image
-								src="/images/apple-logo.png"
+								src="/personal/images/apple-logo.png"
 								alt="Apple"
 								width={16}
 								height={16}
@@ -651,7 +651,7 @@ export default function MenuBar({
 			<div className="flex items-center space-x-4">
 				<div className="sm:flex items-center space-x-4 hidden">
 					<Image
-						src="/images/battery-icon.png"
+						src="/personal/images/battery-icon.png"
 						alt="Battery"
 						width={24}
 						height={24}
@@ -659,7 +659,7 @@ export default function MenuBar({
 						unoptimized
 					/>
 					<Image
-						src="/images/wifi-icon.png"
+						src="/personal/images/wifi-icon.png"
 						alt="WiFi"
 						width={16}
 						height={16}
@@ -667,7 +667,7 @@ export default function MenuBar({
 						unoptimized
 					/>
 					<Image
-						src="/images/control-center-icon.png"
+						src="/personal/images/control-center-icon.png"
 						alt="Control Center"
 						width={12}
 						height={12}
